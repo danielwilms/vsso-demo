@@ -1,0 +1,9 @@
+name: vsso-core
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyterlab=3.0.3=pyhd8ed1ab_0
+  - pip=20.3.3=pyhd8ed1ab_0
+  - python=3.9.1=h1d169a7_3_cpython
+  - rdflib=5.0.0=py39hde42818_3
