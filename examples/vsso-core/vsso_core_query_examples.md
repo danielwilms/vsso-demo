@@ -36,7 +36,7 @@ For that, the example data and the ontology can be imported into a graph databas
 
 ### <a name="Q01"></a> Q01 - What are the static properties of a given vehicle and what do they express?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (?svp AS ?StaticVehicleProperty) ?value (?vc AS ?VehicleComponent) WHERE {
@@ -45,12 +45,12 @@ SELECT (?svp AS ?StaticVehicleProperty) ?value (?vc AS ?VehicleComponent) WHERE 
        ?svp ?value .
     ?svp rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
          vsso:belongsToVehicleComponent ?vc .
-}
+}   
 ```
 
 ### <a name="Q02"></a> Q02 How many attributes (i.e., static properties) does a vehicle have?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (COUNT(?svp) AS ?count_StaticVehicleProperty)  WHERE {
@@ -60,12 +60,11 @@ SELECT (COUNT(?svp) AS ?count_StaticVehicleProperty)  WHERE {
     ?svp rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
          vsso:belongsToVehicleComponent ?vc .
 }
-}
 ```
 
 ### <a name="Q03"></a> Q03 - What is the model of this vehicle?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?model  WHERE {
     ?v a vsso:Vehicle ;
@@ -76,7 +75,7 @@ SELECT ?model  WHERE {
 
 ### <a name="Q04"></a> Q04 - What is the brand of this car?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?brand  WHERE {
     ?v a vsso:Vehicle ;
@@ -87,7 +86,7 @@ SELECT ?brand  WHERE {
 
 ### <a name="Q05"></a> Q05 - What are the VINs?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 SELECT (?v as ?Vehicle) ?VIN  WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN ?VIN .
@@ -96,8 +95,8 @@ SELECT (?v as ?Vehicle) ?VIN  WHERE {
 
 ### <a name="Q06"></a> Q06 - How old is this vehicle?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?age WHERE {
     ?v rdf:type vsso:Vehicle ;
@@ -108,7 +107,7 @@ BIND((2021-?year) AS ?age)}
 
 ### <a name="Q07"></a> Q07 - What are the dimensions of this vehicle?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?length ?height ?width  WHERE {
     ?v a vsso:Vehicle ;
@@ -121,7 +120,7 @@ SELECT ?length ?height ?width  WHERE {
 
 ### <a name="Q08"></a> Q08 - What are the characteristics of this vehicle's chassis?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT * WHERE {
     ?v a vsso:Vehicle ;
@@ -133,7 +132,7 @@ SELECT * WHERE {
 
 ### <a name="Q09"></a> Q09 - What type of fuel does this vehicle need?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT (?value AS ?FuelType)  WHERE {
     ?v a vsso:Vehicle ;
@@ -144,7 +143,7 @@ SELECT (?value AS ?FuelType)  WHERE {
 
 ### <a name="Q10"></a> Q10 - What type of transmission does this vehicle have?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT (?value AS ?TransmissionType)  WHERE {
     ?v a vsso:Vehicle ;
@@ -155,7 +154,7 @@ SELECT (?value AS ?TransmissionType)  WHERE {
 
 ### <a name="Q11"></a> Q11 - What are the characteristics of this engine?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (?svp AS ?StaticVehicleProperty) ?value WHERE {
     ?v a vsso:Vehicle ;
@@ -168,7 +167,7 @@ SELECT (?svp AS ?StaticVehicleProperty) ?value WHERE {
 
 ### <a name="Q12"></a> Q12 - How many doors does this vehicle contain?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?CabinDoorCount  WHERE {
     ?v a vsso:Vehicle ;
@@ -179,7 +178,7 @@ SELECT ?CabinDoorCount  WHERE {
 
 ### <a name="Q13"></a> Q13 - How many seats does this vehicle have?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?vehicleSeatingCapacity  WHERE {
     ?v a vsso:Vehicle ;
@@ -190,7 +189,7 @@ SELECT ?vehicleSeatingCapacity  WHERE {
 
 ### <a name="Q14"></a> Q14 - On which side is located the steering wheel?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?SteeringWheelPosition  WHERE {
     ?v a vsso:Vehicle ;
@@ -208,22 +207,20 @@ SELECT * WHERE {
 
 ### <a name="Q16"></a> Q16 - What are the dynamic vehicle properties that can be acted on?
 ```SPARQL
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (?dvp AS ?DynamicVehicleProperty) ?class WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN "1"^^xsd:string ;  # Assign the VIN of the desired Vehicle
-	   vsso:hasVehicleProperty ?dvp .
-    ?dvp a ?class .
-    ?class rdfs:subClassOf vsso:ActuatableVehicleProperty .
+	   vsso:hasDynamicVehicleProperty ?dvp .
+    ?dvp a vsso:ActuatableVehicleProperty .
 }
 ```
 
 ### <a name="Q17"></a> Q17 - Which dynamic properties are both observable and actuatable?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (?dvp AS ?DynamicVehicleProperty) ?class WHERE {
@@ -238,7 +235,7 @@ SELECT (?dvp AS ?DynamicVehicleProperty) ?class WHERE {
 
 ### <a name="Q18"></a> Q18 - How many dynamic properties does this car contain?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT (COUNT(?dvp) AS ?count_DynamicVehicleProperty) WHERE {
     ?v a vsso:Vehicle ;
@@ -249,7 +246,7 @@ SELECT (COUNT(?dvp) AS ?count_DynamicVehicleProperty) WHERE {
 
 ### <a name="Q19"></a> Q19 - What properties in this vehicle refer to "Speed"?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?dvp ?class WHERE {
@@ -263,17 +260,17 @@ SELECT ?dvp ?class WHERE {
 
 ### <a name="Q20"></a> Q20 - To which part of the vehicle belongs the dynamic property vsso:AccelerationLongitudinal?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
-select (?vc AS ?VehicleComponent) ?source where {
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
+SELECT (?vc AS ?VehicleComponent) ?partOf WHERE {
 	vsso:AccelerationLongitudinal vsso:belongsToVehicleComponent ?vc .
-    ?vc vsso:partOf ?source .
+    ?vc vsso:partOf ?partOf .
 }
 ```
 
 ### <a name="Q21"></a> Q21 - Which properties refer to a temperature, and in which part of the vehicle?
 ```SPARQL
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 SELECT DISTINCT * where {
   ?dvp rdfs:label ?o . FILTER contains(lcase(?o),"temperature")
   ?dvp vsso:belongsToVehicleComponent ?vc .
@@ -283,6 +280,8 @@ SELECT DISTINCT * where {
 
 ### <a name="Q22"></a> Q22 - What unit type does the signals of type vsso:VehicleYaw use?
 ```SPARQL
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
+PREFIX schema: <https://schema.org/>
 SELECT * WHERE {
     vsso:AngularVelocityYaw schema:rangeIncludes ?o .
 }
@@ -290,8 +289,8 @@ SELECT * WHERE {
 
 ### <a name="Q23"></a> Q23 - What are the characteristics of the sensor producing the signal “TravelledDistance” in the OBD branch?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
-select * where {
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
+SELECT * WHERE {
 	vsso:TravelledDistance ?p ?o .
 }
 ```
@@ -303,9 +302,9 @@ select * where {
 
 ### <a name="Q25"></a> Q25 - What is the current gear?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-select (?dvp AS ?DynamicVehicleProperty) ?value where {
+SELECT (?dvp AS ?DynamicVehicleProperty) ?value WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN "1"^^xsd:string ;  # Assign the VIN of the desired Vehicle
        vsso:hasDynamicVehicleProperty ?dvp .
@@ -316,10 +315,10 @@ select (?dvp AS ?DynamicVehicleProperty) ?value where {
 
 ### <a name="Q26"></a> Q26 - What are the values of all properties representing speed in the vehicle now?
 ```SPARQL
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?dvp ?value where {
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?dvp ?value WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN "1"^^xsd:string ;  # Assign the VIN of the desired Vehicle
        vsso:hasDynamicVehicleProperty ?dvp .
@@ -331,22 +330,22 @@ select ?dvp ?value where {
 
 ### <a name="Q27"></a> Q27 - Which windows are currently open? <a name="Q27"></a>
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-select (?dvp AS ?DynamicVehicleProperty) ?value where {
+SELECT (?dvp AS ?DynamicVehicleProperty) ?value WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN "1"^^xsd:string ;  # Assign the VIN of the desired Vehicle
        vsso:hasDynamicVehicleProperty ?dvp .
     ?dvp a vsso:WindowisOpen ;
-         vsso:holdsState ?value
+         vsso:holdsState ?value . FILTER(?value = "true"^^xsd:boolean)
 }
 ```
 
 ### <a name="Q28"></a> Q28 - What is the local current temperature on the driver side?
 ```SPARQL
-PREFIX vsso: <https://www.w3.org/vsso/>
+PREFIX vsso: <https://github.com/danielwilms/vsso-demo/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-select (?dvp AS ?DynamicVehicleProperty) ?value where {
+SELECT (?dvp AS ?DynamicVehicleProperty) ?value WHERE {
     ?v a vsso:Vehicle ;
        vsso:hasVehicleIdentificationVIN "1"^^xsd:string ;  # Assign the VIN of the desired Vehicle
        vsso:hasDynamicVehicleProperty ?dvp .
