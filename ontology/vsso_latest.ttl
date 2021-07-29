@@ -224,8 +224,8 @@ vsso:BatteryAccumulatedChargedEnergy a rdfs:Class,
     rdfs:label "AccumulatedChargedEnergy"@en ;
     rdfs:comment "The accumulated energy delivered to the battery during charging over lifetime."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.AccumulatedChargedEnergy"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.AccumulatedChargedEnergy"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes xsd:float .
 
 vsso:BatteryAccumulatedConsumedEnergy a rdfs:Class,
@@ -233,8 +233,8 @@ vsso:BatteryAccumulatedConsumedEnergy a rdfs:Class,
     rdfs:label "AccumulatedConsumedEnergy"@en ;
     rdfs:comment "The accumulated energy leaving HV battery for propulsion and auxiliary loads over lifetime."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.AccumulatedConsumedEnergy"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.AccumulatedConsumedEnergy"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes xsd:float .
 
 vsso:BatteryTemperature a rdfs:Class,
@@ -242,8 +242,8 @@ vsso:BatteryTemperature a rdfs:Class,
     rdfs:label "Temperature"@en ;
     rdfs:comment "Temperature of the battery pack"@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.Temperature"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Temperature"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:float .
 
@@ -294,6 +294,124 @@ vsso:BrakePedalPosition a rdfs:Class,
     schema:rangeIncludes qudt:DimensionlessUnit,
         xsd:unsignedByte .
 
+vsso:ChargingChargeCurrent a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargeCurrent"@en ;
+    rdfs:comment "Current charging current."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargeCurrent"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:ElectricCurrentUnit,
+        xsd:float .
+
+vsso:ChargingChargeLimit a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargeLimit"@en ;
+    rdfs:comment "Maximum charge level for battery, can potentially be set manually."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargeLimit"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:DimensionlessUnit,
+        xsd:unsignedByte .
+
+vsso:ChargingChargePlugStatus a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargePlugStatus"@en ;
+    rdfs:comment "Signal indicating if charge plug is connected or not."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargePlugStatus"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:boolean .
+
+vsso:ChargingChargePortFlap a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargePortFlap"@en ;
+    rdfs:comment "Signal indicating if charge port cover is open or closed, can potentially be controlled manually."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargePortFlap"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:string .
+
+vsso:ChargingChargeRate a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargeRate"@en ;
+    rdfs:comment "Current charging rate, as in kilometers of range added per hour."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargeRate"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:LinearVelocityUnit,
+        xsd:float .
+
+vsso:ChargingChargeVoltage a rdfs:Class,
+        owl:Class ;
+    rdfs:label "ChargeVoltage"@en ;
+    rdfs:comment "Current charging voltage."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargeVoltage"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:EnergyPerElectricChargeUnit,
+        xsd:float .
+
+vsso:ChargingMaximumChargingCurrent a rdfs:Class,
+        owl:Class ;
+    rdfs:label "MaximumChargingCurrent"@en ;
+    rdfs:comment "Maximum charging current that can be accepted by the system."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.MaximumChargingCurrent"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:ElectricCurrentUnit,
+        xsd:float .
+
+vsso:ChargingMode a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Mode"@en ;
+    rdfs:comment "Control of the charge process - manually initiated (plug-in event, companion app, etc), timer-based or grid-controlled (eg ISO 15118)."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.Mode"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:string .
+
+vsso:ChargingStartStopCharging a rdfs:Class,
+        owl:Class ;
+    rdfs:label "StartStopCharging"@en ;
+    rdfs:comment "Start or stop the charging process."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.StartStopCharging"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:string .
+
+vsso:ChargingStatus a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Status"@en ;
+    rdfs:comment "State of charging process."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.Status"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:boolean .
+
+vsso:ChargingTimeToComplete a rdfs:Class,
+        owl:Class ;
+    rdfs:label "TimeToComplete"@en ;
+    rdfs:comment "The time needed to complete the current charging process to the set charge limit. 0 if charging is complete, negative number if no charging process is active."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.TimeToComplete"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes qudt:TimeUnit,
+        xsd:unsignedInt .
+
+vsso:ChassisTrailerConnected a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Connected"@en ;
+    rdfs:comment "Signal indicating if trailer is connected or not."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Chassis.Trailer.Connected"@en ;
+    vsso:belongsToVehicleComponent vsso:ChassisTrailer ;
+    schema:rangeIncludes xsd:boolean .
+
 vsso:ConvertibleStatus a rdfs:Class,
         owl:Class ;
     rdfs:label "Status"@en ;
@@ -336,50 +454,50 @@ vsso:CruiseControlSpeedSet a rdfs:Class,
 vsso:CurrentLocationAccuracy a rdfs:Class,
         owl:Class ;
     rdfs:label "Accuracy"@en ;
-    rdfs:comment "Accuracy level of the latitude and longitude coordinates in meters."@en ;
+    rdfs:comment "Accuracy level of the latitude and longitude coordinates."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Accuracy"@en ;
-    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    skos:altLabel "Vehicle.CurrentLocation.Accuracy"@en ;
+    vsso:belongsToVehicleComponent vsso:CurrentLocation ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:double .
 
 vsso:CurrentLocationAltitude a rdfs:Class,
         owl:Class ;
     rdfs:label "Altitude"@en ;
-    rdfs:comment "Current elevation of the position in meters."@en ;
+    rdfs:comment "Current elevation of the position."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Altitude"@en ;
-    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    skos:altLabel "Vehicle.CurrentLocation.Altitude"@en ;
+    vsso:belongsToVehicleComponent vsso:CurrentLocation ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:double .
 
 vsso:CurrentLocationHeading a rdfs:Class,
         owl:Class ;
     rdfs:label "Heading"@en ;
-    rdfs:comment "Current magnetic compass heading, in degrees."@en ;
+    rdfs:comment "Current magnetic compass heading."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Heading"@en ;
-    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    skos:altLabel "Vehicle.CurrentLocation.Heading"@en ;
+    vsso:belongsToVehicleComponent vsso:CurrentLocation ;
     schema:rangeIncludes qudt:AngleUnit,
         xsd:double .
 
 vsso:CurrentLocationLatitude a rdfs:Class,
         owl:Class ;
     rdfs:label "Latitude"@en ;
-    rdfs:comment "Current latitude of vehicle, as reported by GPS."@en ;
+    rdfs:comment "Current latitude of vehicle."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Latitude"@en ;
-    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    skos:altLabel "Vehicle.CurrentLocation.Latitude"@en ;
+    vsso:belongsToVehicleComponent vsso:CurrentLocation ;
     schema:rangeIncludes qudt:AngleUnit,
         xsd:double .
 
 vsso:CurrentLocationLongitude a rdfs:Class,
         owl:Class ;
     rdfs:label "Longitude"@en ;
-    rdfs:comment "Current longitude of vehicle, as reported by GPS."@en ;
+    rdfs:comment "Current longitude of vehicle."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Longitude"@en ;
-    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    skos:altLabel "Vehicle.CurrentLocation.Longitude"@en ;
+    vsso:belongsToVehicleComponent vsso:CurrentLocation ;
     schema:rangeIncludes qudt:AngleUnit,
         xsd:double .
 
@@ -391,6 +509,16 @@ vsso:CurrentLocationSpeed a rdfs:Class,
     skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Speed"@en ;
     vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
     schema:rangeIncludes qudt:LinearVelocityUnit,
+        xsd:unsignedShort .
+
+vsso:CurrentOverallWeight a rdfs:Class,
+        owl:Class ;
+    rdfs:label "CurrentOverallWeight"@en ;
+    rdfs:comment "Current overall Vehicle weight. Including passengers, cargo and other load inside the car."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.CurrentOverallWeight"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes cdt:mass,
         xsd:unsignedShort .
 
 vsso:CushionBackward a rdfs:Class,
@@ -474,6 +602,36 @@ vsso:DestinationSetLongitude a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:NavigationDestinationSet ;
     schema:rangeIncludes qudt:AngleUnit,
         xsd:double .
+
+vsso:DieselParticulateFilterDeltaPressure a rdfs:Class,
+        owl:Class ;
+    rdfs:label "DeltaPressure"@en ;
+    rdfs:comment "Delta Pressure of Diesel Particulate Filter."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.DieselParticulateFilter.DeltaPressure"@en ;
+    vsso:belongsToVehicleComponent vsso:CombustionEngineDieselParticulateFilter ;
+    schema:rangeIncludes qudt:PressureOrStressUnit,
+        xsd:float .
+
+vsso:DieselParticulateFilterInletTemperature a rdfs:Class,
+        owl:Class ;
+    rdfs:label "InletTemperature"@en ;
+    rdfs:comment "Inlet temperature of Diesel Particulate Filter."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.DieselParticulateFilter.InletTemperature"@en ;
+    vsso:belongsToVehicleComponent vsso:CombustionEngineDieselParticulateFilter ;
+    schema:rangeIncludes qudt:TemperatureUnit,
+        xsd:float .
+
+vsso:DieselParticulateFilterOutletTemperature a rdfs:Class,
+        owl:Class ;
+    rdfs:label "OutletTemperature"@en ;
+    rdfs:comment "Outlet temperature of Diesel Particulate Filter."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.DieselParticulateFilter.OutletTemperature"@en ;
+    vsso:belongsToVehicleComponent vsso:CombustionEngineDieselParticulateFilter ;
+    schema:rangeIncludes qudt:TemperatureUnit,
+        xsd:float .
 
 vsso:DoorIsChildLockActive a rdfs:Class,
         owl:Class ;
@@ -660,22 +818,12 @@ vsso:ESCIsEngaged a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:ADASESC ;
     schema:rangeIncludes xsd:boolean .
 
-vsso:EngineAmbientAirTemperature a rdfs:Class,
-        owl:Class ;
-    rdfs:label "AmbientAirTemperature"@en ;
-    rdfs:comment "Ambient (Outside) air temperature"@en ;
-    rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.AmbientAirTemperature"@en ;
-    vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
-    schema:rangeIncludes qudt:TemperatureUnit,
-        xsd:float .
-
 vsso:EngineECT a rdfs:Class,
         owl:Class ;
     rdfs:label "ECT"@en ;
     rdfs:comment "Engine coolant temperature."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.ECT"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.ECT"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:short .
@@ -685,7 +833,7 @@ vsso:EngineEOP a rdfs:Class,
     rdfs:label "EOP"@en ;
     rdfs:comment "Engine oil pressure."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.EOP"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.EOP"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:PressureOrStressUnit,
         xsd:short .
@@ -695,7 +843,7 @@ vsso:EngineEOT a rdfs:Class,
     rdfs:label "EOT"@en ;
     rdfs:comment "Engine oil temperature."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.EOT"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.EOT"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:short .
@@ -705,7 +853,7 @@ vsso:EngineMAF a rdfs:Class,
     rdfs:label "MAF"@en ;
     rdfs:comment "Grams of air drawn into engine per second."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.MAF"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.MAF"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:MassPerTimeUnit,
         xsd:short .
@@ -715,7 +863,7 @@ vsso:EngineMAP a rdfs:Class,
     rdfs:label "MAP"@en ;
     rdfs:comment "Manifold air pressure possibly boosted using forced induction."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.MAP"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.MAP"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:PressureOrStressUnit,
         xsd:short .
@@ -725,7 +873,7 @@ vsso:EnginePower a rdfs:Class,
     rdfs:label "Power"@en ;
     rdfs:comment "Current engine power output."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.Power"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.Power"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:PowerUnit,
         xsd:short .
@@ -735,7 +883,7 @@ vsso:EngineSpeed a rdfs:Class,
     rdfs:label "Speed"@en ;
     rdfs:comment "Engine speed measured as rotations per minute."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.Speed"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.Speed"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:AngularVelocityUnit,
         xsd:unsignedShort .
@@ -745,7 +893,7 @@ vsso:EngineTPS a rdfs:Class,
     rdfs:label "TPS"@en ;
     rdfs:comment "Current throttle position."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.TPS"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.TPS"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:DimensionlessUnit,
         xsd:byte .
@@ -755,7 +903,7 @@ vsso:EngineTorque a rdfs:Class,
     rdfs:label "Torque"@en ;
     rdfs:comment "Current engine torque."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine.Torque"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine.Torque"@en ;
     vsso:belongsToVehicleComponent vsso:CombustionEngineEngine ;
     schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
         xsd:short .
@@ -765,8 +913,8 @@ vsso:FuelSystemAverageConsumption a rdfs:Class,
     rdfs:label "AverageConsumption"@en ;
     rdfs:comment "Average consumption in liters per 100 km."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.AverageConsumption"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.AverageConsumption"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes xsd:float .
 
 vsso:FuelSystemConsumptionSinceStart a rdfs:Class,
@@ -774,8 +922,8 @@ vsso:FuelSystemConsumptionSinceStart a rdfs:Class,
     rdfs:label "ConsumptionSinceStart"@en ;
     rdfs:comment "Fuel amount consumed since start in liters."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.ConsumptionSinceStart"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.ConsumptionSinceStart"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes qudt:VolumeUnit,
         xsd:float .
 
@@ -784,8 +932,8 @@ vsso:FuelSystemEngineStopStartEnabled a rdfs:Class,
     rdfs:label "EngineStopStartEnabled"@en ;
     rdfs:comment "Indicates whether eco start stop is currently enabled"@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.EngineStopStartEnabled"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.EngineStopStartEnabled"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes xsd:boolean .
 
 vsso:FuelSystemInstantConsumption a rdfs:Class,
@@ -793,8 +941,8 @@ vsso:FuelSystemInstantConsumption a rdfs:Class,
     rdfs:label "InstantConsumption"@en ;
     rdfs:comment "Current consumption in liters per 100 km."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.InstantConsumption"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.InstantConsumption"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes xsd:float .
 
 vsso:FuelSystemLevel a rdfs:Class,
@@ -802,8 +950,8 @@ vsso:FuelSystemLevel a rdfs:Class,
     rdfs:label "Level"@en ;
     rdfs:comment "Level in fuel tank as percent of capacity. 0 = empty. 100 = full."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.Level"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.Level"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes qudt:DimensionlessUnit,
         xsd:unsignedByte .
 
@@ -812,8 +960,8 @@ vsso:FuelSystemLowFuelLevel a rdfs:Class,
     rdfs:label "LowFuelLevel"@en ;
     rdfs:comment "Indicates that the fuel level is low (e.g. <50km range)"@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.LowFuelLevel"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.LowFuelLevel"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes xsd:boolean .
 
 vsso:FuelSystemRange a rdfs:Class,
@@ -821,8 +969,8 @@ vsso:FuelSystemRange a rdfs:Class,
     rdfs:label "Range"@en ;
     rdfs:comment "Range in meters."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.Range"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.Range"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedInt .
 
@@ -831,8 +979,8 @@ vsso:FuelSystemTimeSinceStart a rdfs:Class,
     rdfs:label "TimeSinceStart"@en ;
     rdfs:comment "Time elapsed since start in seconds."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.TimeSinceStart"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.TimeSinceStart"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
     schema:rangeIncludes qudt:TimeUnit,
         xsd:unsignedInt .
 
@@ -1433,7 +1581,7 @@ vsso:MotorCoolantTemperature a rdfs:Class,
     rdfs:label "CoolantTemperature"@en ;
     rdfs:comment "Motor coolant temperature (if applicable)."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor.CoolantTemperature"@en ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor.CoolantTemperature"@en ;
     vsso:belongsToVehicleComponent vsso:ElectricMotorMotor ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:short .
@@ -1443,7 +1591,7 @@ vsso:MotorPower a rdfs:Class,
     rdfs:label "Power"@en ;
     rdfs:comment "Current motor power output. Negative values indicate regen mode."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor.Power"@en ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor.Power"@en ;
     vsso:belongsToVehicleComponent vsso:ElectricMotorMotor ;
     schema:rangeIncludes qudt:PowerUnit,
         xsd:short .
@@ -1453,7 +1601,7 @@ vsso:MotorRpm a rdfs:Class,
     rdfs:label "Rpm"@en ;
     rdfs:comment "Motor rotational speed measured as rotations per minute. Negative values indicate reverse driving mode."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor.Rpm"@en ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor.Rpm"@en ;
     vsso:belongsToVehicleComponent vsso:ElectricMotorMotor ;
     schema:rangeIncludes qudt:AngularVelocityUnit,
         xsd:unsignedInt .
@@ -1463,7 +1611,7 @@ vsso:MotorTemperature a rdfs:Class,
     rdfs:label "Temperature"@en ;
     rdfs:comment "Motor temperature."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor.Temperature"@en ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor.Temperature"@en ;
     vsso:belongsToVehicleComponent vsso:ElectricMotorMotor ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:short .
@@ -1473,10 +1621,60 @@ vsso:MotorTorque a rdfs:Class,
     rdfs:label "Torque"@en ;
     rdfs:comment "Current motor torque. Negative values indicate regen mode."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor.Torque"@en ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor.Torque"@en ;
     vsso:belongsToVehicleComponent vsso:ElectricMotorMotor ;
     schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
         xsd:short .
+
+vsso:NavigationCurrentLocationAccuracy a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Accuracy"@en ;
+    rdfs:comment "Accuracy level of the latitude and longitude coordinates in meters."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Accuracy"@en ;
+    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    schema:rangeIncludes qudt:LengthUnit,
+        xsd:double .
+
+vsso:NavigationCurrentLocationAltitude a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Altitude"@en ;
+    rdfs:comment "Current elevation of the position in meters."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Altitude"@en ;
+    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    schema:rangeIncludes qudt:LengthUnit,
+        xsd:double .
+
+vsso:NavigationCurrentLocationHeading a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Heading"@en ;
+    rdfs:comment "Current magnetic compass heading, in degrees."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Heading"@en ;
+    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    schema:rangeIncludes qudt:AngleUnit,
+        xsd:double .
+
+vsso:NavigationCurrentLocationLatitude a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Latitude"@en ;
+    rdfs:comment "Current latitude of vehicle, as reported by GPS."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Latitude"@en ;
+    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    schema:rangeIncludes qudt:AngleUnit,
+        xsd:double .
+
+vsso:NavigationCurrentLocationLongitude a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Longitude"@en ;
+    rdfs:comment "Current longitude of vehicle, as reported by GPS."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation.Longitude"@en ;
+    vsso:belongsToVehicleComponent vsso:NavigationCurrentLocation ;
+    schema:rangeIncludes qudt:AngleUnit,
+        xsd:double .
 
 vsso:O2WRSensor1Voltage a rdfs:Class,
         owl:Class ;
@@ -1645,6 +1843,14 @@ vsso:OBDCoolantTemperature a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:OBD ;
     schema:rangeIncludes qudt:TemperatureUnit,
         xsd:float .
+
+vsso:OBDDTCList a rdfs:Class,
+        owl:Class ;
+    rdfs:label "DTCList"@en ;
+    rdfs:comment "List of currently active DTCs formatted according OBD II (SAE-J2012DA_201812) standard ([P|C|B|U]XXXXX )"@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.OBD.DTCList"@en ;
+    vsso:belongsToVehicleComponent vsso:OBD .
 
 vsso:OBDDistanceSinceDTCClear a rdfs:Class,
         owl:Class ;
@@ -2124,16 +2330,6 @@ vsso:ObservableVehicleProperty a rdfs:Class,
     rdfs:label "ObservableVehicleProperty"@en ;
     rdfs:subClassOf vsso:DynamicVehicleProperty .
 
-vsso:ObstacleDetectionDistanceToObject a rdfs:Class,
-        owl:Class ;
-    rdfs:label "DistanceToObject"@en ;
-    rdfs:comment "Distance to object in meters"@en ;
-    rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.ADAS.ObstacleDetection.DistanceToObject"@en ;
-    vsso:belongsToVehicleComponent vsso:ADASObstacleDetection ;
-    schema:rangeIncludes qudt:LengthUnit,
-        xsd:unsignedShort .
-
 vsso:ObstacleDetectionError a rdfs:Class,
         owl:Class ;
     rdfs:label "Error"@en ;
@@ -2558,13 +2754,23 @@ vsso:Speed a rdfs:Class,
     schema:rangeIncludes qudt:LinearVelocityUnit,
         xsd:int .
 
-vsso:SpotlightIsPassengerOn a rdfs:Class,
+vsso:SpotlightIsLeftOn a rdfs:Class,
         owl:Class ;
-    rdfs:label "IsPassengerOn"@en ;
-    rdfs:comment "Is passenger light on"@en ;
+    rdfs:label "IsLeftOn"@en ;
+    rdfs:comment "Is light on the left side switched on"@en ;
     rdfs:subClassOf vsso:ActuatableVehicleProperty,
         vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Cabin.Lights.Spotlight.IsPassengerOn"@en ;
+    skos:altLabel "Vehicle.Cabin.Lights.Spotlight.IsLeftOn"@en ;
+    vsso:belongsToVehicleComponent vsso:LightsSpotlight ;
+    schema:rangeIncludes xsd:boolean .
+
+vsso:SpotlightIsRightOn a rdfs:Class,
+        owl:Class ;
+    rdfs:label "IsRightOn"@en ;
+    rdfs:comment "Is light on the right side switched on"@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Cabin.Lights.Spotlight.IsRightOn"@en ;
     vsso:belongsToVehicleComponent vsso:LightsSpotlight ;
     schema:rangeIncludes xsd:boolean .
 
@@ -2577,12 +2783,22 @@ vsso:SpotlightIsSharedOn a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:LightsSpotlight ;
     schema:rangeIncludes xsd:boolean .
 
+vsso:StateOfChargeCurrent a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Current"@en ;
+    rdfs:comment "Physical state of charge of the high voltage battery. This is not necessarily the state of charge being displayed to the customer."@en ;
+    rdfs:subClassOf vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.StateOfCharge.Current"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryStateOfCharge ;
+    schema:rangeIncludes qudt:DimensionlessUnit,
+        xsd:float .
+
 vsso:StateOfChargeDisplayed a rdfs:Class,
         owl:Class ;
     rdfs:label "Displayed"@en ;
     rdfs:comment "State of charge displayed to the customer."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.StateOfCharge.Displayed"@en ;
+    skos:altLabel "Vehicle.Powertrain.Battery.StateOfCharge.Displayed"@en ;
     vsso:belongsToVehicleComponent vsso:BatteryStateOfCharge ;
     schema:rangeIncludes qudt:DimensionlessUnit,
         xsd:float .
@@ -2593,7 +2809,7 @@ vsso:StateOfChargeTarget a rdfs:Class,
     rdfs:comment "Target state of charge set (eg. by customer)."@en ;
     rdfs:subClassOf vsso:ActuatableVehicleProperty,
         vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.StateOfCharge.Target"@en ;
+    skos:altLabel "Vehicle.Powertrain.Battery.StateOfCharge.Target"@en ;
     vsso:belongsToVehicleComponent vsso:BatteryStateOfCharge ;
     schema:rangeIncludes qudt:DimensionlessUnit,
         xsd:unsignedByte .
@@ -2796,6 +3012,27 @@ vsso:TCSIsEngaged a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:ADASTCS ;
     schema:rangeIncludes xsd:boolean .
 
+vsso:TimerMode a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Mode"@en ;
+    rdfs:comment "Defines whether Timer.Time is defining start- or endtime of a charging action; departuretime denotes that target time should be taken from vehicle-level desired departure-time setting."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.Timer.Mode"@en ;
+    vsso:belongsToVehicleComponent vsso:ChargingTimer ;
+    schema:rangeIncludes xsd:string .
+
+vsso:TimerTime a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Time"@en ;
+    rdfs:comment "Time value for next charging-related action (Unix timestamp, seconds)."@en ;
+    rdfs:subClassOf vsso:ActuatableVehicleProperty,
+        vsso:ObservableVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.Timer.Time"@en ;
+    vsso:belongsToVehicleComponent vsso:ChargingTimer ;
+    schema:rangeIncludes qudt:TimeUnit,
+        xsd:unsignedInt .
+
 vsso:TirePressure a rdfs:Class,
         owl:Class ;
     rdfs:label "Pressure"@en ;
@@ -2830,8 +3067,8 @@ vsso:TrailerConnected a rdfs:Class,
     rdfs:label "Connected"@en ;
     rdfs:comment "Signal indicating if trailer is connected or not."@en ;
     rdfs:subClassOf vsso:ObservableVehicleProperty ;
-    skos:altLabel "Vehicle.Chassis.Trailer.Connected"@en ;
-    vsso:belongsToVehicleComponent vsso:ChassisTrailer ;
+    skos:altLabel "Vehicle.Trailer.Connected"@en ;
+    vsso:belongsToVehicleComponent vsso:Trailer ;
     schema:rangeIncludes xsd:boolean .
 
 vsso:TransmissionClutchWear a rdfs:Class,
@@ -3021,12 +3258,6 @@ vsso:WipingStatus a rdfs:Class,
     vsso:belongsToVehicleComponent vsso:WindshieldWiping ;
     schema:rangeIncludes xsd:string .
 
-vsso:EnergyStorageFuelCell a vsso:VehicleComponent ;
-    rdfs:label "FuelCell"@en ;
-    rdfs:comment "Fuel Cell data."@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelCell"@en ;
-    vsso:partOf vsso:PowertrainEnergyStorage .
-
 vsso:Media a vsso:VehicleComponent ;
     rdfs:label "Media"@en ;
     rdfs:comment "Media service data."@en ;
@@ -3081,20 +3312,16 @@ vsso:O2AltBank2Sensor4 a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.OBD.O2Alt.Bank2.Sensor4"@en ;
     vsso:partOf vsso:O2AltBank2 .
 
-vsso:StateOfChargeCurrent a vsso:VehicleComponent ;
-    rdfs:label "Current"@en ;
-    rdfs:comment "Physical state of charge of the high voltage battery. This is not necessarily the state of charge being displayed to the customer."@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.StateOfCharge.Current"@en ;
-    vsso:partOf vsso:BatteryStateOfCharge .
+vsso:PowertrainFuelCell a vsso:VehicleComponent ;
+    rdfs:label "FuelCell"@en ;
+    rdfs:comment "Fuel Cell data."@en ;
+    skos:altLabel "Vehicle.Powertrain.FuelCell"@en ;
+    vsso:partOf vsso:Powertrain .
 
-vsso:belongsToVehicleComponent a owl:ObjectProperty ;
-    rdfs:label "belongsToVehicleComponent"@en ;
-    rdfs:domain vsso:DynamicVehicleProperty,
-        vsso:hasStaticVehicleProperty ;
-    rdfs:range vsso:VehicleComponent ;
-    rdfs:subPropertyOf owl:topObjectProperty .
+vsso:belongsToVehicleComponent a owl:AnnotationProperty ;
+    rdfs:label "belongsToVehicleComponent"@en .
 
-vsso:hasAxleTireDiameter a owl:DataProperty ;
+vsso:hasAxleTireDiameter a owl:DatatypeProperty ;
     rdfs:label "TireDiameter"@en ;
     rdfs:comment "Diameter of tires, in inches, as per ETRO / TRA standard."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3103,7 +3330,7 @@ vsso:hasAxleTireDiameter a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedByte .
 
-vsso:hasAxleTireWidth a owl:DataProperty ;
+vsso:hasAxleTireWidth a owl:DatatypeProperty ;
     rdfs:label "TireWidth"@en ;
     rdfs:comment "Width of tires, in inches, as per ETRO / TRA standard."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3112,7 +3339,7 @@ vsso:hasAxleTireWidth a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedByte .
 
-vsso:hasAxleWheelCount a owl:DataProperty ;
+vsso:hasAxleWheelCount a owl:DatatypeProperty ;
     rdfs:label "WheelCount"@en ;
     rdfs:comment "Number of wheels on the first axle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3120,7 +3347,7 @@ vsso:hasAxleWheelCount a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:ChassisAxle ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasAxleWheelDiameter a owl:DataProperty ;
+vsso:hasAxleWheelDiameter a owl:DatatypeProperty ;
     rdfs:label "WheelDiameter"@en ;
     rdfs:comment "Diameter of wheels (without tires), in inches, as per ETRO / TRA standard."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3129,7 +3356,7 @@ vsso:hasAxleWheelDiameter a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedByte .
 
-vsso:hasAxleWheelWidth a owl:DataProperty ;
+vsso:hasAxleWheelWidth a owl:DatatypeProperty ;
     rdfs:label "WheelWidth"@en ;
     rdfs:comment "Width of wheels (without tires), in inches, as per ETRO / TRA standard."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3138,41 +3365,41 @@ vsso:hasAxleWheelWidth a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedByte .
 
-vsso:hasBatteryGrossCapacity a owl:DataProperty ;
+vsso:hasBatteryGrossCapacity a owl:DatatypeProperty ;
     rdfs:label "GrossCapacity"@en ;
     rdfs:comment "Gross capacity of the battery"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.GrossCapacity"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.GrossCapacity"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes xsd:unsignedShort .
 
-vsso:hasBatteryNetCapacity a owl:DataProperty ;
+vsso:hasBatteryNetCapacity a owl:DatatypeProperty ;
     rdfs:label "NetCapacity"@en ;
     rdfs:comment "Net capacity of the battery"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.NetCapacity"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.NetCapacity"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes xsd:unsignedShort .
 
-vsso:hasBatteryNominalVoltage a owl:DataProperty ;
+vsso:hasBatteryNominalVoltage a owl:DatatypeProperty ;
     rdfs:label "NominalVoltage"@en ;
     rdfs:comment "Nominal Voltage of the battery"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.NominalVoltage"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.NominalVoltage"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes qudt:EnergyPerElectricChargeUnit,
         xsd:unsignedShort .
 
-vsso:hasBatteryReferentVoltage a owl:DataProperty ;
+vsso:hasBatteryReferentVoltage a owl:DatatypeProperty ;
     rdfs:label "ReferentVoltage"@en ;
     rdfs:comment "Referent Voltage of the battery"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.ReferentVoltage"@en ;
-    vsso:belongsToVehicleComponent vsso:BatteryBattery ;
+    skos:altLabel "Vehicle.Powertrain.Battery.ReferentVoltage"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainBattery ;
     schema:rangeIncludes qudt:EnergyPerElectricChargeUnit,
         xsd:unsignedShort .
 
-vsso:hasBodyBodyType a owl:DataProperty ;
+vsso:hasBodyBodyType a owl:DatatypeProperty ;
     rdfs:label "BodyType"@en ;
     rdfs:comment "Body type code as defined by ISO 3779"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3180,7 +3407,7 @@ vsso:hasBodyBodyType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Body ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasBodyRefuelPosition a owl:DataProperty ;
+vsso:hasBodyRefuelPosition a owl:DatatypeProperty ;
     rdfs:label "RefuelPosition"@en ;
     rdfs:comment "Location of the fuel cap or charge port"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3188,7 +3415,7 @@ vsso:hasBodyRefuelPosition a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Body ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasCabinDoorCount a owl:DataProperty ;
+vsso:hasCabinDoorCount a owl:DatatypeProperty ;
     rdfs:label "DoorCount"@en ;
     rdfs:comment "Number of doors in vehicle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3196,7 +3423,7 @@ vsso:hasCabinDoorCount a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Cabin ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasCabinDriverPosition a owl:DataProperty ;
+vsso:hasCabinDriverPosition a owl:DatatypeProperty ;
     rdfs:label "DriverPosition"@en ;
     rdfs:comment "The position of the driver seat in row 1. (1-5)"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3204,15 +3431,14 @@ vsso:hasCabinDriverPosition a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Cabin ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasCabinSeatPosCount a owl:DataProperty ;
+vsso:hasCabinSeatPosCount a owl:DatatypeProperty ;
     rdfs:label "SeatPosCount"@en ;
     rdfs:comment "Number of seats across each row from the front to the rear"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
     skos:altLabel "Vehicle.Cabin.SeatPosCount"@en ;
-    vsso:belongsToVehicleComponent vsso:Cabin ;
-    schema:rangeIncludes xsd:unsignedByte .
+    vsso:belongsToVehicleComponent vsso:Cabin .
 
-vsso:hasCabinSeatRowCount a owl:DataProperty ;
+vsso:hasCabinSeatRowCount a owl:DatatypeProperty ;
     rdfs:label "SeatRowCount"@en ;
     rdfs:comment "Number of seat rows in vehicle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3220,7 +3446,15 @@ vsso:hasCabinSeatRowCount a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Cabin ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasChargingPortType a owl:DataProperty ;
+vsso:hasChargingChargePlugType a owl:DatatypeProperty ;
+    rdfs:label "ChargePlugType"@en ;
+    rdfs:comment "Type of charge plug available on the vehicle (CSS includes Type2)."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.ChargePlugType"@en ;
+    vsso:belongsToVehicleComponent vsso:BatteryCharging ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasChargingPortType a owl:DatatypeProperty ;
     rdfs:label "Type"@en ;
     rdfs:comment "Indicates the primary charging type fitted to the vehicle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3228,7 +3462,7 @@ vsso:hasChargingPortType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:BodyChargingPort ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasChassisAxleCount a owl:DataProperty ;
+vsso:hasChassisAxleCount a owl:DatatypeProperty ;
     rdfs:label "AxleCount"@en ;
     rdfs:comment "Number of axles on the vehicle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3236,7 +3470,7 @@ vsso:hasChassisAxleCount a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:Chassis ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasChassisCurbWeight a owl:DataProperty ;
+vsso:hasChassisCurbWeight a owl:DatatypeProperty ;
     rdfs:label "CurbWeight"@en ;
     rdfs:comment "Vehicle curb weight, in kg, including all liquids and full tank of fuel, but no cargo or passengers."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3245,7 +3479,7 @@ vsso:hasChassisCurbWeight a owl:DataProperty ;
     schema:rangeIncludes cdt:mass,
         xsd:unsignedShort .
 
-vsso:hasChassisGrossWeight a owl:DataProperty ;
+vsso:hasChassisGrossWeight a owl:DatatypeProperty ;
     rdfs:label "GrossWeight"@en ;
     rdfs:comment "Curb weight of vehicle, including all liquids and full tank of fuel and full load of cargo and passengers."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3254,7 +3488,7 @@ vsso:hasChassisGrossWeight a owl:DataProperty ;
     schema:rangeIncludes cdt:mass,
         xsd:unsignedShort .
 
-vsso:hasChassisHeight a owl:DataProperty ;
+vsso:hasChassisHeight a owl:DatatypeProperty ;
     rdfs:label "Height"@en ;
     rdfs:comment "Overall vehicle height, in mm."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3263,7 +3497,7 @@ vsso:hasChassisHeight a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedShort .
 
-vsso:hasChassisLength a owl:DataProperty ;
+vsso:hasChassisLength a owl:DatatypeProperty ;
     rdfs:label "Length"@en ;
     rdfs:comment "Overall vehicle length, in mm."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3272,7 +3506,7 @@ vsso:hasChassisLength a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedShort .
 
-vsso:hasChassisTowWeight a owl:DataProperty ;
+vsso:hasChassisTowWeight a owl:DatatypeProperty ;
     rdfs:label "TowWeight"@en ;
     rdfs:comment "Maximum weight, in kilos, of trailer."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3281,7 +3515,7 @@ vsso:hasChassisTowWeight a owl:DataProperty ;
     schema:rangeIncludes cdt:mass,
         xsd:unsignedShort .
 
-vsso:hasChassisTrack a owl:DataProperty ;
+vsso:hasChassisTrack a owl:DatatypeProperty ;
     rdfs:label "Track"@en ;
     rdfs:comment "Overall wheel tracking, in mm."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3290,7 +3524,7 @@ vsso:hasChassisTrack a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedShort .
 
-vsso:hasChassisWheelbase a owl:DataProperty ;
+vsso:hasChassisWheelbase a owl:DatatypeProperty ;
     rdfs:label "Wheelbase"@en ;
     rdfs:comment "Overall wheel base, in mm."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3299,7 +3533,7 @@ vsso:hasChassisWheelbase a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedShort .
 
-vsso:hasChassisWidth a owl:DataProperty ;
+vsso:hasChassisWidth a owl:DatatypeProperty ;
     rdfs:label "Width"@en ;
     rdfs:comment "Overall vehicle width, in mm."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3308,115 +3542,244 @@ vsso:hasChassisWidth a owl:DataProperty ;
     schema:rangeIncludes qudt:LengthUnit,
         xsd:unsignedShort .
 
-vsso:hasCombustionEngineConfiguration a owl:DataProperty ;
+vsso:hasCombustionEngineAspirationType a owl:DatatypeProperty ;
+    rdfs:label "AspirationType"@en ;
+    rdfs:comment "Type of aspiration (natural, turbocharger, supercharger etc)."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.AspirationType"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasCombustionEngineBore a owl:DatatypeProperty ;
+    rdfs:label "Bore"@en ;
+    rdfs:comment "Bore in centimetres."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Bore"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:unsignedShort .
+
+vsso:hasCombustionEngineCompressionRatio a owl:DatatypeProperty ;
+    rdfs:label "CompressionRatio"@en ;
+    rdfs:comment "Engine compression ratio."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.CompressionRatio"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasCombustionEngineConfiguration a owl:DatatypeProperty ;
     rdfs:label "Configuration"@en ;
     rdfs:comment "Engine configuration."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Configuration"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceCombustionEngine ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Configuration"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasCombustionEngineDisplacement a owl:DataProperty ;
+vsso:hasCombustionEngineDisplacement a owl:DatatypeProperty ;
     rdfs:label "Displacement"@en ;
     rdfs:comment "Displacement in cubic centimetres."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Displacement"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceCombustionEngine ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Displacement"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
     schema:rangeIncludes cdt:volume,
         xsd:unsignedShort .
 
-vsso:hasCombustionEngineFuelType a owl:DataProperty ;
-    rdfs:label "FuelType"@en ;
-    rdfs:comment "Type of fuel that the engine runs on."@en ;
+vsso:hasCombustionEngineEngineCoolantCapacity a owl:DatatypeProperty ;
+    rdfs:label "EngineCoolantCapacity"@en ;
+    rdfs:comment "Engine coolant capacity in liters."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.FuelType"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceCombustionEngine ;
-    schema:rangeIncludes xsd:string .
-
-vsso:hasCombustionEngineMaxPower a owl:DataProperty ;
-    rdfs:label "MaxPower"@en ;
-    rdfs:comment "Peak power, in kilowatts, that engine can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.MaxPower"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceCombustionEngine ;
-    schema:rangeIncludes qudt:PowerUnit,
-        xsd:unsignedShort .
-
-vsso:hasCombustionEngineMaxTorque a owl:DataProperty ;
-    rdfs:label "MaxTorque"@en ;
-    rdfs:comment "Peak power, in newton meter, that the engine can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.MaxTorque"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceCombustionEngine ;
-    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
-        xsd:unsignedShort .
-
-vsso:hasElectricMotorMaxPower a owl:DataProperty ;
-    rdfs:label "MaxPower"@en ;
-    rdfs:comment "Peak power, in kilowatts, that motor(s) can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.MaxPower"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceElectricMotor ;
-    schema:rangeIncludes qudt:PowerUnit,
-        xsd:unsignedShort .
-
-vsso:hasElectricMotorMaxRegenPower a owl:DataProperty ;
-    rdfs:label "MaxRegenPower"@en ;
-    rdfs:comment "Peak regen/brake power, in kilowatts, that motor(s) can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.MaxRegenPower"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceElectricMotor ;
-    schema:rangeIncludes qudt:PowerUnit,
-        xsd:unsignedShort .
-
-vsso:hasElectricMotorMaxRegenTorque a owl:DataProperty ;
-    rdfs:label "MaxRegenTorque"@en ;
-    rdfs:comment "Peak regen/brake torque, in newton meter, that the motor(s) can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.MaxRegenTorque"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceElectricMotor ;
-    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
-        xsd:unsignedShort .
-
-vsso:hasElectricMotorMaxTorque a owl:DataProperty ;
-    rdfs:label "MaxTorque"@en ;
-    rdfs:comment "Peak power, in newton meter, that the motor(s) can generate."@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.MaxTorque"@en ;
-    vsso:belongsToVehicleComponent vsso:PowerSourceElectricMotor ;
-    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
-        xsd:unsignedShort .
-
-vsso:hasFuelSystemFuelType a owl:DataProperty ;
-    rdfs:label "FuelType"@en ;
-    rdfs:comment "Defines the fuel type of the vehicle"@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.FuelType"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
-    schema:rangeIncludes xsd:string .
-
-vsso:hasFuelSystemHybridType a owl:DataProperty ;
-    rdfs:label "HybridType"@en ;
-    rdfs:comment "Defines the hybrid type of the vehicle"@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.HybridType"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
-    schema:rangeIncludes xsd:string .
-
-vsso:hasFuelSystemTankCapacity a owl:DataProperty ;
-    rdfs:label "TankCapacity"@en ;
-    rdfs:comment "Capacity of the fuel tank in liters"@en ;
-    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem.TankCapacity"@en ;
-    vsso:belongsToVehicleComponent vsso:EnergyStorageFuelSystem ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.EngineCoolantCapacity"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
     schema:rangeIncludes qudt:VolumeUnit,
         xsd:unsignedShort .
 
-vsso:hasInstance a owl:DataProperty ;
-    rdfs:label "hasInstance"@en ;
-    rdfs:subPropertyOf owl:topDataProperty .
+vsso:hasCombustionEngineEngineOilCapacity a owl:DatatypeProperty ;
+    rdfs:label "EngineOilCapacity"@en ;
+    rdfs:comment "Engine oil capacity in liters."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.EngineOilCapacity"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes qudt:VolumeUnit,
+        xsd:unsignedShort .
 
-vsso:hasRoofLoad a owl:DataProperty ;
+vsso:hasCombustionEngineFuelType a owl:DatatypeProperty ;
+    rdfs:label "FuelType"@en ;
+    rdfs:comment "Type of fuel that the engine runs on."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.FuelType"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasCombustionEngineMaxPower a owl:DatatypeProperty ;
+    rdfs:label "MaxPower"@en ;
+    rdfs:comment "Peak power, in kilowatts, that engine can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.MaxPower"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes qudt:PowerUnit,
+        xsd:unsignedShort .
+
+vsso:hasCombustionEngineMaxTorque a owl:DatatypeProperty ;
+    rdfs:label "MaxTorque"@en ;
+    rdfs:comment "Peak power, in newton meter, that the engine can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.MaxTorque"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
+        xsd:unsignedShort .
+
+vsso:hasCombustionEngineNumberOfCylinders a owl:DatatypeProperty ;
+    rdfs:label "NumberOfCylinders"@en ;
+    rdfs:comment "Number of cylinders."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.NumberOfCylinders"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:unsignedShort .
+
+vsso:hasCombustionEngineNumberOfValvesPerCylinder a owl:DatatypeProperty ;
+    rdfs:label "NumberOfValvesPerCylinder"@en ;
+    rdfs:comment "Number of valves per cylinder."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.NumberOfValvesPerCylinder"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:unsignedShort .
+
+vsso:hasCombustionEngineOilLifeRemaining a owl:DatatypeProperty ;
+    rdfs:label "OilLifeRemaining"@en ;
+    rdfs:comment "Remaining engine oil life in seconds."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.OilLifeRemaining"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes qudt:TimeUnit,
+        xsd:unsignedInt .
+
+vsso:hasCombustionEngineStrokeLength a owl:DatatypeProperty ;
+    rdfs:label "StrokeLength"@en ;
+    rdfs:comment "Stroke length in centimetres."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.StrokeLength"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainCombustionEngine ;
+    schema:rangeIncludes xsd:unsignedShort .
+
+vsso:hasCurbWeight a owl:DatatypeProperty ;
+    rdfs:label "CurbWeight"@en ;
+    rdfs:comment "Vehicle curb weight, including all liquids and full tank of fuel, but no cargo or passengers."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.CurbWeight"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes cdt:mass,
+        xsd:unsignedShort .
+
+vsso:hasElectricMotorMaxPower a owl:DatatypeProperty ;
+    rdfs:label "MaxPower"@en ;
+    rdfs:comment "Peak power, in kilowatts, that motor(s) can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.MaxPower"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainElectricMotor ;
+    schema:rangeIncludes qudt:PowerUnit,
+        xsd:unsignedShort .
+
+vsso:hasElectricMotorMaxRegenPower a owl:DatatypeProperty ;
+    rdfs:label "MaxRegenPower"@en ;
+    rdfs:comment "Peak regen/brake power, in kilowatts, that motor(s) can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.MaxRegenPower"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainElectricMotor ;
+    schema:rangeIncludes qudt:PowerUnit,
+        xsd:unsignedShort .
+
+vsso:hasElectricMotorMaxRegenTorque a owl:DatatypeProperty ;
+    rdfs:label "MaxRegenTorque"@en ;
+    rdfs:comment "Peak regen/brake torque, in newton meter, that the motor(s) can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.MaxRegenTorque"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainElectricMotor ;
+    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
+        xsd:unsignedShort .
+
+vsso:hasElectricMotorMaxTorque a owl:DatatypeProperty ;
+    rdfs:label "MaxTorque"@en ;
+    rdfs:comment "Peak power, in newton meter, that the motor(s) can generate."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.MaxTorque"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainElectricMotor ;
+    schema:rangeIncludes qudt:BendingMomentOrTorqueUnit,
+        xsd:unsignedShort .
+
+vsso:hasFuelSystemFuelType a owl:DatatypeProperty ;
+    rdfs:label "FuelType"@en ;
+    rdfs:comment "Defines the fuel type of the vehicle"@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.FuelType"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasFuelSystemHybridType a owl:DatatypeProperty ;
+    rdfs:label "HybridType"@en ;
+    rdfs:comment "Defines the hybrid type of the vehicle"@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.HybridType"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
+    schema:rangeIncludes xsd:string .
+
+vsso:hasFuelSystemTankCapacity a owl:DatatypeProperty ;
+    rdfs:label "TankCapacity"@en ;
+    rdfs:comment "Capacity of the fuel tank in liters"@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Powertrain.FuelSystem.TankCapacity"@en ;
+    vsso:belongsToVehicleComponent vsso:PowertrainFuelSystem ;
+    schema:rangeIncludes qudt:VolumeUnit,
+        xsd:unsignedShort .
+
+vsso:hasGrossWeight a owl:DatatypeProperty ;
+    rdfs:label "GrossWeight"@en ;
+    rdfs:comment "Curb weight of vehicle, including all liquids and full tank of fuel and full load of cargo and passengers."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.GrossWeight"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes cdt:mass,
+        xsd:unsignedShort .
+
+vsso:hasHeight a owl:DatatypeProperty ;
+    rdfs:label "Height"@en ;
+    rdfs:comment "Overall vehicle height."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Height"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes qudt:LengthUnit,
+        xsd:unsignedShort .
+
+vsso:hasInstance a owl:DatatypeProperty ;
+    rdfs:label "hasInstance"@en ;
+    rdfs:subPropertyOf owl:topDatatypeProperty .
+
+vsso:hasLength a owl:DatatypeProperty ;
+    rdfs:label "Length"@en ;
+    rdfs:comment "Overall vehicle length."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Length"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes qudt:LengthUnit,
+        xsd:unsignedShort .
+
+vsso:hasMaxTowBallWeight a owl:DatatypeProperty ;
+    rdfs:label "MaxTowBallWeight"@en ;
+    rdfs:comment "Maximum vertical weight on the tow ball of a trailer."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.MaxTowBallWeight"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes cdt:mass,
+        xsd:unsignedShort .
+
+vsso:hasMaxTowWeight a owl:DatatypeProperty ;
+    rdfs:label "MaxTowWeight"@en ;
+    rdfs:comment "Maximum weight of trailer."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.MaxTowWeight"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes cdt:mass,
+        xsd:unsignedShort .
+
+vsso:hasRoofLoad a owl:DatatypeProperty ;
     rdfs:label "RoofLoad"@en ;
     rdfs:comment "The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3425,7 +3788,7 @@ vsso:hasRoofLoad a owl:DataProperty ;
     schema:rangeIncludes cdt:mass,
         xsd:short .
 
-vsso:hasSteeringWheelPosition a owl:DataProperty ;
+vsso:hasSteeringWheelPosition a owl:DatatypeProperty ;
     rdfs:label "Position"@en ;
     rdfs:comment "Position of the steering wheel on the left or right side of the vehicle."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3433,7 +3796,7 @@ vsso:hasSteeringWheelPosition a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:ChassisSteeringWheel ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasTransmissionDriveType a owl:DataProperty ;
+vsso:hasTransmissionDriveType a owl:DatatypeProperty ;
     rdfs:label "DriveType"@en ;
     rdfs:comment "Drive type."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3441,7 +3804,7 @@ vsso:hasTransmissionDriveType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:PowertrainTransmission ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasTransmissionGearCount a owl:DataProperty ;
+vsso:hasTransmissionGearCount a owl:DatatypeProperty ;
     rdfs:label "GearCount"@en ;
     rdfs:comment "Number of forward gears in the transmission. -1 = CVT."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3449,7 +3812,7 @@ vsso:hasTransmissionGearCount a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:PowertrainTransmission ;
     schema:rangeIncludes xsd:unsignedByte .
 
-vsso:hasTransmissionType a owl:DataProperty ;
+vsso:hasTransmissionType a owl:DatatypeProperty ;
     rdfs:label "Type"@en ;
     rdfs:comment "Transmission type."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3457,7 +3820,7 @@ vsso:hasTransmissionType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:PowertrainTransmission ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationACRISSCode a owl:DataProperty ;
+vsso:hasVehicleIdentificationACRISSCode a owl:DatatypeProperty ;
     rdfs:label "ACRISSCode"@en ;
     rdfs:comment "The ACRISS Car Classification Code is a code used by many car rental companies."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3465,7 +3828,7 @@ vsso:hasVehicleIdentificationACRISSCode a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationBrand a owl:DataProperty ;
+vsso:hasVehicleIdentificationBrand a owl:DatatypeProperty ;
     rdfs:label "Brand"@en ;
     rdfs:comment "Vehicle brand or manufacturer"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3473,7 +3836,7 @@ vsso:hasVehicleIdentificationBrand a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationModel a owl:DataProperty ;
+vsso:hasVehicleIdentificationModel a owl:DatatypeProperty ;
     rdfs:label "Model"@en ;
     rdfs:comment "Vehicle model"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3481,7 +3844,7 @@ vsso:hasVehicleIdentificationModel a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationVIN a owl:DataProperty ;
+vsso:hasVehicleIdentificationVIN a owl:DatatypeProperty ;
     rdfs:label "VIN"@en ;
     rdfs:comment "17-character Vehicle Identification Number (VIN) as defined by ISO 3779"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3489,7 +3852,7 @@ vsso:hasVehicleIdentificationVIN a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationWMI a owl:DataProperty ;
+vsso:hasVehicleIdentificationWMI a owl:DatatypeProperty ;
     rdfs:label "WMI"@en ;
     rdfs:comment "3-character World Manufacturer Identification (WMI) as defined by ISO 3780"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3497,7 +3860,7 @@ vsso:hasVehicleIdentificationWMI a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationYear a owl:DataProperty ;
+vsso:hasVehicleIdentificationYear a owl:DatatypeProperty ;
     rdfs:label "Year"@en ;
     rdfs:comment "Model year of the vehicle"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3505,7 +3868,7 @@ vsso:hasVehicleIdentificationYear a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:unsignedShort .
 
-vsso:hasVehicleIdentificationbodyType a owl:DataProperty ;
+vsso:hasVehicleIdentificationbodyType a owl:DatatypeProperty ;
     rdfs:label "bodyType"@en ;
     rdfs:comment "Indicates the design and body style of the vehicle (e.g. station wagon, hatchback, etc.)."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3513,7 +3876,7 @@ vsso:hasVehicleIdentificationbodyType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationdateVehicleFirstRegistered a owl:DataProperty ;
+vsso:hasVehicleIdentificationdateVehicleFirstRegistered a owl:DatatypeProperty ;
     rdfs:label "dateVehicleFirstRegistered"@en ;
     rdfs:comment "The date of the first registration of the vehicle with the respective public authorities."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3521,7 +3884,7 @@ vsso:hasVehicleIdentificationdateVehicleFirstRegistered a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationknownVehicleDamages a owl:DataProperty ;
+vsso:hasVehicleIdentificationknownVehicleDamages a owl:DatatypeProperty ;
     rdfs:label "knownVehicleDamages"@en ;
     rdfs:comment "A textual description of known damages, both repaired and unrepaired."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3529,7 +3892,7 @@ vsso:hasVehicleIdentificationknownVehicleDamages a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationmeetsEmissionStandard a owl:DataProperty ;
+vsso:hasVehicleIdentificationmeetsEmissionStandard a owl:DatatypeProperty ;
     rdfs:label "meetsEmissionStandard"@en ;
     rdfs:comment "Indicates that the vehicle meets the respective emission standard."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3537,7 +3900,7 @@ vsso:hasVehicleIdentificationmeetsEmissionStandard a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationproductionDate a owl:DataProperty ;
+vsso:hasVehicleIdentificationproductionDate a owl:DatatypeProperty ;
     rdfs:label "productionDate"@en ;
     rdfs:comment "The date of production of the item, e.g. vehicle."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3545,7 +3908,7 @@ vsso:hasVehicleIdentificationproductionDate a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationpurchaseDate a owl:DataProperty ;
+vsso:hasVehicleIdentificationpurchaseDate a owl:DatatypeProperty ;
     rdfs:label "purchaseDate"@en ;
     rdfs:comment "The date the item e.g. vehicle was purchased by the current owner."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3553,7 +3916,7 @@ vsso:hasVehicleIdentificationpurchaseDate a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationvehicleConfiguration a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleConfiguration a owl:DatatypeProperty ;
     rdfs:label "vehicleConfiguration"@en ;
     rdfs:comment "A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3561,7 +3924,7 @@ vsso:hasVehicleIdentificationvehicleConfiguration a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationvehicleModelDate a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleModelDate a owl:DatatypeProperty ;
     rdfs:label "vehicleModelDate"@en ;
     rdfs:comment "The release date of a vehicle model (often used to differentiate versions of the same make and model)."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3569,7 +3932,7 @@ vsso:hasVehicleIdentificationvehicleModelDate a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationvehicleSeatingCapacity a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleSeatingCapacity a owl:DatatypeProperty ;
     rdfs:label "vehicleSeatingCapacity"@en ;
     rdfs:comment "The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3577,7 +3940,7 @@ vsso:hasVehicleIdentificationvehicleSeatingCapacity a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:unsignedShort .
 
-vsso:hasVehicleIdentificationvehicleSpecialUsage a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleSpecialUsage a owl:DatatypeProperty ;
     rdfs:label "vehicleSpecialUsage"@en ;
     rdfs:comment "Indicates whether the vehicle has been used for special purposes, like commercial rental, driving school."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3585,7 +3948,7 @@ vsso:hasVehicleIdentificationvehicleSpecialUsage a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationvehicleinteriorColor a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleinteriorColor a owl:DatatypeProperty ;
     rdfs:label "vehicleinteriorColor"@en ;
     rdfs:comment "A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3593,7 +3956,7 @@ vsso:hasVehicleIdentificationvehicleinteriorColor a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVehicleIdentificationvehicleinteriorType a owl:DataProperty ;
+vsso:hasVehicleIdentificationvehicleinteriorType a owl:DatatypeProperty ;
     rdfs:label "vehicleinteriorType"@en ;
     rdfs:comment "The type or material of the interior of the vehicle (e.g. synthetic fabric, leather, wood, etc.)."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3601,7 +3964,7 @@ vsso:hasVehicleIdentificationvehicleinteriorType a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VehicleIdentification ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVersionVSSLabel a owl:DataProperty ;
+vsso:hasVersionVSSLabel a owl:DatatypeProperty ;
     rdfs:label "Label"@en ;
     rdfs:comment "Label to further describe the version"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3609,7 +3972,7 @@ vsso:hasVersionVSSLabel a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VersionVSS ;
     schema:rangeIncludes xsd:string .
 
-vsso:hasVersionVSSMajor a owl:DataProperty ;
+vsso:hasVersionVSSMajor a owl:DatatypeProperty ;
     rdfs:label "Major"@en ;
     rdfs:comment "Supported Version of VSS - Major version"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3617,7 +3980,7 @@ vsso:hasVersionVSSMajor a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VersionVSS ;
     schema:rangeIncludes xsd:unsignedInt .
 
-vsso:hasVersionVSSMinor a owl:DataProperty ;
+vsso:hasVersionVSSMinor a owl:DatatypeProperty ;
     rdfs:label "Minor"@en ;
     rdfs:comment "Supported Version of VSS - Minor version"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3625,7 +3988,7 @@ vsso:hasVersionVSSMinor a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VersionVSS ;
     schema:rangeIncludes xsd:unsignedInt .
 
-vsso:hasVersionVSSPatch a owl:DataProperty ;
+vsso:hasVersionVSSPatch a owl:DatatypeProperty ;
     rdfs:label "Patch"@en ;
     rdfs:comment "Supported Version of VSS - Patch version"@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3633,7 +3996,16 @@ vsso:hasVersionVSSPatch a owl:DataProperty ;
     vsso:belongsToVehicleComponent vsso:VersionVSS ;
     schema:rangeIncludes xsd:unsignedInt .
 
-vsso:hasaccelerationTime a owl:DataProperty ;
+vsso:hasWidth a owl:DatatypeProperty ;
+    rdfs:label "Width"@en ;
+    rdfs:comment "Overall vehicle width."@en ;
+    rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
+    skos:altLabel "Vehicle.Width"@en ;
+    vsso:belongsToVehicleComponent vsso:Vehicle ;
+    schema:rangeIncludes qudt:LengthUnit,
+        xsd:unsignedShort .
+
+vsso:hasaccelerationTime a owl:DatatypeProperty ;
     rdfs:label "accelerationTime"@en ;
     rdfs:comment "The time needed to accelerate the vehicle from a given start velocity to a given target velocity."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3642,7 +4014,7 @@ vsso:hasaccelerationTime a owl:DataProperty ;
     schema:rangeIncludes qudt:TimeUnit,
         xsd:short .
 
-vsso:hascargoVolume a owl:DataProperty ;
+vsso:hascargoVolume a owl:DatatypeProperty ;
     rdfs:label "cargoVolume"@en ;
     rdfs:comment "The available volume for cargo or luggage. For automobiles, this is usually the trunk volume."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
@@ -3651,24 +4023,22 @@ vsso:hascargoVolume a owl:DataProperty ;
     schema:rangeIncludes qudt:VolumeUnit,
         xsd:short .
 
-vsso:hasemissionsCO2 a owl:DataProperty ;
+vsso:hasemissionsCO2 a owl:DatatypeProperty ;
     rdfs:label "emissionsCO2"@en ;
-    rdfs:comment "The CO2 emissions in g/km."@en ;
+    rdfs:comment "The CO2 emissions."@en ;
     rdfs:subPropertyOf vsso:hasStaticVehicleProperty ;
     skos:altLabel "Vehicle.emissionsCO2"@en ;
     vsso:belongsToVehicleComponent vsso:Vehicle ;
     schema:rangeIncludes xsd:short .
 
-vsso:holdsState a owl:DataProperty ;
+vsso:holdsState a owl:DatatypeProperty ;
     rdfs:label "holdsState"@en ;
     rdfs:domain vsso:DynamicVehicleProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
+    rdfs:subPropertyOf owl:topDatatypeProperty .
 
 vsso:partOf a owl:ObjectProperty ;
     rdfs:label "partOf"@en ;
     rdfs:domain vsso:VehicleComponent ;
-    rdfs:range vsso:Vehicle,
-        vsso:VehicleComponent ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
 vsso:Bank1Sensor1 a vsso:VehicleComponent ;
@@ -3779,12 +4149,6 @@ vsso:ChassisTrailer a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Chassis.Trailer"@en ;
     vsso:partOf vsso:Chassis .
 
-vsso:EnergyStorageBattery a vsso:VehicleComponent ;
-    rdfs:label "Battery"@en ;
-    rdfs:comment "Battery Management data."@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery"@en ;
-    vsso:partOf vsso:PowertrainEnergyStorage .
-
 vsso:MirrorsHeating a vsso:VehicleComponent ;
     rdfs:label "Heating"@en ;
     rdfs:comment "Mirror heater signals"@en ;
@@ -3815,6 +4179,12 @@ vsso:SeatSideBolster a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Seat.SideBolster"@en ;
     vsso:partOf vsso:CabinSeat .
 
+vsso:Trailer a vsso:VehicleComponent ;
+    rdfs:label "Trailer"@en ;
+    rdfs:comment "Trailer signals"@en ;
+    skos:altLabel "Vehicle.Trailer"@en ;
+    vsso:partOf vsso:Vehicle .
+
 vsso:WindshieldHeating a vsso:VehicleComponent ;
     rdfs:label "Heating"@en ;
     rdfs:comment "Front windshield heater signals"@en ;
@@ -3826,6 +4196,12 @@ vsso:WindshieldWiping a vsso:VehicleComponent ;
     rdfs:comment "Front windshield wiper signals"@en ;
     skos:altLabel "Vehicle.Body.Windshield.Wiping"@en ;
     vsso:partOf vsso:BodyWindshield .
+
+vsso:ADASObstacleDetection a vsso:VehicleComponent ;
+    rdfs:label "ObstacleDetection"@en ;
+    rdfs:comment "Signals form Obstacle Sensor System"@en ;
+    skos:altLabel "Vehicle.ADAS.ObstacleDetection"@en ;
+    vsso:partOf vsso:ADAS .
 
 vsso:AxleWheel a vsso:VehicleComponent ;
     rdfs:label "Wheel"@en ;
@@ -3857,6 +4233,12 @@ vsso:CatalystBank2 a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.OBD.Catalyst.Bank2"@en ;
     vsso:partOf vsso:OBDCatalyst .
 
+vsso:ChargingTimer a vsso:VehicleComponent ;
+    rdfs:label "Timer"@en ;
+    rdfs:comment "Properties related to timing of battery charging sessions."@en ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging.Timer"@en ;
+    vsso:partOf vsso:BatteryCharging .
+
 vsso:DoorShade a vsso:VehicleComponent ;
     rdfs:label "Shade"@en ;
     rdfs:comment "Side window shade"@en ;
@@ -3874,12 +4256,6 @@ vsso:InfotainmentNavigation a vsso:VehicleComponent ;
     rdfs:comment "All navigation actions"@en ;
     skos:altLabel "Vehicle.Cabin.Infotainment.Navigation"@en ;
     vsso:partOf vsso:CabinInfotainment .
-
-vsso:LightsSpotlight a vsso:VehicleComponent ;
-    rdfs:label "Spotlight"@en ;
-    rdfs:comment "Spotlight for a specific area in the vehicle."@en ;
-    skos:altLabel "Vehicle.Cabin.Lights.Spotlight"@en ;
-    vsso:partOf vsso:CabinLights .
 
 vsso:NavigationDestinationSet a vsso:VehicleComponent ;
     rdfs:label "DestinationSet"@en ;
@@ -3959,12 +4335,6 @@ vsso:OccupantIdentifier a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Seat.Occupant.Identifier"@en ;
     vsso:partOf vsso:SeatOccupant .
 
-vsso:PowertrainPowerSource a vsso:VehicleComponent ;
-    rdfs:label "PowerSource"@en ;
-    rdfs:comment "Powertrain data for power sources (combustion engines, electric motors, etc.)"@en ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource"@en ;
-    vsso:partOf vsso:Powertrain .
-
 vsso:SeatCushion a vsso:VehicleComponent ;
     rdfs:label "Cushion"@en ;
     rdfs:comment "Cushion signals."@en ;
@@ -4037,12 +4407,6 @@ vsso:ADASLaneDepartureDetection a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.ADAS.LaneDepartureDetection"@en ;
     vsso:partOf vsso:ADAS .
 
-vsso:ADASObstacleDetection a vsso:VehicleComponent ;
-    rdfs:label "ObstacleDetection"@en ;
-    rdfs:comment "Signals form Obstacle Sensor System"@en ;
-    skos:altLabel "Vehicle.ADAS.ObstacleDetection"@en ;
-    vsso:partOf vsso:ADAS .
-
 vsso:ADASTCS a vsso:VehicleComponent ;
     rdfs:label "TCS"@en ;
     rdfs:comment "Traction Control System signals"@en ;
@@ -4064,8 +4428,8 @@ vsso:AngularVelocity a vsso:VehicleComponent ;
 vsso:BatteryStateOfCharge a vsso:VehicleComponent ;
     rdfs:label "StateOfCharge"@en ;
     rdfs:comment "Information on the state of charge of the vehicle's high voltage battery."@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery.StateOfCharge"@en ;
-    vsso:partOf vsso:BatteryBattery .
+    skos:altLabel "Vehicle.Powertrain.Battery.StateOfCharge"@en ;
+    vsso:partOf vsso:PowertrainBattery .
 
 vsso:BodyMirrors a vsso:VehicleComponent ;
     rdfs:label "Mirrors"@en ;
@@ -4091,11 +4455,23 @@ vsso:CabinSunroof a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Sunroof"@en ;
     vsso:partOf vsso:Cabin .
 
+vsso:CombustionEngineDieselParticulateFilter a vsso:VehicleComponent ;
+    rdfs:label "DieselParticulateFilter"@en ;
+    rdfs:comment "Diesel Particulate Filter signals"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.DieselParticulateFilter"@en ;
+    vsso:partOf vsso:PowertrainCombustionEngine .
+
 vsso:HVACStation a vsso:VehicleComponent ;
     rdfs:label "Station"@en ;
     rdfs:comment "HVAC for single station in the vehicle"@en ;
     skos:altLabel "Vehicle.Cabin.HVAC.Station"@en ;
     vsso:partOf vsso:CabinHVAC .
+
+vsso:LightsSpotlight a vsso:VehicleComponent ;
+    rdfs:label "Spotlight"@en ;
+    rdfs:comment "Spotlight for a specific area in the vehicle."@en ;
+    skos:altLabel "Vehicle.Cabin.Lights.Spotlight"@en ;
+    vsso:partOf vsso:CabinLights .
 
 vsso:OBDDriveCycleStatus a vsso:VehicleComponent ;
     rdfs:label "DriveCycleStatus"@en ;
@@ -4108,12 +4484,6 @@ vsso:OBDStatus a vsso:VehicleComponent ;
     rdfs:comment "PID 01 - OBD status"@en ;
     skos:altLabel "Vehicle.OBD.Status"@en ;
     vsso:partOf vsso:OBD .
-
-vsso:PowertrainEnergyStorage a vsso:VehicleComponent ;
-    rdfs:label "EnergyStorage"@en ;
-    rdfs:comment "Powertrain data for energy storage (combustion engines, electric motors, etc.)"@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage"@en ;
-    vsso:partOf vsso:Powertrain .
 
 vsso:WheelTire a vsso:VehicleComponent ;
     rdfs:label "Tire"@en ;
@@ -4157,12 +4527,6 @@ vsso:O2Bank2 a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.OBD.O2.Bank2"@en ;
     vsso:partOf vsso:OBDO2 .
 
-vsso:Powertrain a vsso:VehicleComponent ;
-    rdfs:label "Powertrain"@en ;
-    rdfs:comment "Powertrain data for battery management, etc."@en ;
-    skos:altLabel "Vehicle.Powertrain"@en ;
-    vsso:partOf vsso:Vehicle .
-
 vsso:SwitchCushion a vsso:VehicleComponent ;
     rdfs:label "Cushion"@en ;
     rdfs:comment "Cushion switches"@en ;
@@ -4193,11 +4557,17 @@ vsso:CabinDoor a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Door"@en ;
     vsso:partOf vsso:Cabin .
 
+vsso:CurrentLocation a vsso:VehicleComponent ;
+    rdfs:label "CurrentLocation"@en ;
+    rdfs:comment "The current latitude and longitude of the vehicle."@en ;
+    skos:altLabel "Vehicle.CurrentLocation"@en ;
+    vsso:partOf vsso:Vehicle .
+
 vsso:ElectricMotorMotor a vsso:VehicleComponent ;
     rdfs:label "Motor"@en ;
     rdfs:comment "motor signals"@en ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor.Motor"@en ;
-    vsso:partOf vsso:PowerSourceElectricMotor .
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor.Motor"@en ;
+    vsso:partOf vsso:PowertrainElectricMotor .
 
 vsso:InfotainmentMedia a vsso:VehicleComponent ;
     rdfs:label "Media"@en ;
@@ -4211,11 +4581,11 @@ vsso:MediaPlayed a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Infotainment.Media.Played"@en ;
     vsso:partOf vsso:InfotainmentMedia .
 
-vsso:PowerSourceElectricMotor a vsso:VehicleComponent ;
+vsso:PowertrainElectricMotor a vsso:VehicleComponent ;
     rdfs:label "ElectricMotor"@en ;
     rdfs:comment "Electric Motor specific data."@en ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.ElectricMotor"@en ;
-    vsso:partOf vsso:PowertrainPowerSource .
+    skos:altLabel "Vehicle.Powertrain.ElectricMotor"@en ;
+    vsso:partOf vsso:Powertrain .
 
 vsso:ADAS a vsso:VehicleComponent ;
     rdfs:label "ADAS"@en ;
@@ -4253,17 +4623,11 @@ vsso:NavigationCurrentLocation a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Cabin.Infotainment.Navigation.CurrentLocation"@en ;
     vsso:partOf vsso:InfotainmentNavigation .
 
-vsso:PowerSourceCombustionEngine a vsso:VehicleComponent ;
-    rdfs:label "CombustionEngine"@en ;
-    rdfs:comment "Engine-specific data, stopping at the bell housing."@en ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine"@en ;
-    vsso:partOf vsso:PowertrainPowerSource .
-
-vsso:BatteryBattery a vsso:VehicleComponent ;
-    rdfs:label "Battery"@en ;
-    rdfs:comment "Battery status"@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.Battery.Battery"@en ;
-    vsso:partOf vsso:EnergyStorageBattery .
+vsso:Powertrain a vsso:VehicleComponent ;
+    rdfs:label "Powertrain"@en ;
+    rdfs:comment "Powertrain data for battery management, etc."@en ;
+    skos:altLabel "Vehicle.Powertrain"@en ;
+    vsso:partOf vsso:Vehicle .
 
 vsso:InfotainmentHMI a vsso:VehicleComponent ;
     rdfs:label "HMI"@en ;
@@ -4277,17 +4641,23 @@ vsso:OBDO2WR a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.OBD.O2WR"@en ;
     vsso:partOf vsso:OBD .
 
+vsso:CombustionEngineEngine a vsso:VehicleComponent ;
+    rdfs:label "Engine"@en ;
+    rdfs:comment "Engine signals"@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine.Engine"@en ;
+    vsso:partOf vsso:PowertrainCombustionEngine .
+
+vsso:PowertrainBattery a vsso:VehicleComponent ;
+    rdfs:label "Battery"@en ;
+    rdfs:comment "Battery Management data."@en ;
+    skos:altLabel "Vehicle.Powertrain.Battery"@en ;
+    vsso:partOf vsso:Powertrain .
+
 vsso:Body a vsso:VehicleComponent ;
     rdfs:label "Body"@en ;
     rdfs:comment "All body components."@en ;
     skos:altLabel "Vehicle.Body"@en ;
     vsso:partOf vsso:Vehicle .
-
-vsso:CombustionEngineEngine a vsso:VehicleComponent ;
-    rdfs:label "Engine"@en ;
-    rdfs:comment "Engine signals"@en ;
-    skos:altLabel "Vehicle.Powertrain.PowerSource.CombustionEngine.Engine"@en ;
-    vsso:partOf vsso:PowerSourceCombustionEngine .
 
 vsso:PowertrainTransmission a vsso:VehicleComponent ;
     rdfs:label "Transmission"@en ;
@@ -4301,17 +4671,23 @@ vsso:BodyLights a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Body.Lights"@en ;
     vsso:partOf vsso:Body .
 
-vsso:EnergyStorageFuelSystem a vsso:VehicleComponent ;
+vsso:PowertrainFuelSystem a vsso:VehicleComponent ;
     rdfs:label "FuelSystem"@en ;
     rdfs:comment "Fuel system data."@en ;
-    skos:altLabel "Vehicle.Powertrain.EnergyStorage.FuelSystem"@en ;
-    vsso:partOf vsso:PowertrainEnergyStorage .
+    skos:altLabel "Vehicle.Powertrain.FuelSystem"@en ;
+    vsso:partOf vsso:Powertrain .
 
 vsso:SeatSwitch a vsso:VehicleComponent ;
     rdfs:label "Switch"@en ;
     rdfs:comment "Seat switch signals"@en ;
     skos:altLabel "Vehicle.Cabin.Seat.Switch"@en ;
     vsso:partOf vsso:CabinSeat .
+
+vsso:BatteryCharging a vsso:VehicleComponent ;
+    rdfs:label "Charging"@en ;
+    rdfs:comment "Properties related to battery charging"@en ;
+    skos:altLabel "Vehicle.Powertrain.Battery.Charging"@en ;
+    vsso:partOf vsso:PowertrainBattery .
 
 vsso:Cabin a vsso:VehicleComponent ;
     rdfs:label "Cabin"@en ;
@@ -4331,6 +4707,12 @@ vsso:Chassis a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.Chassis"@en ;
     vsso:partOf vsso:Vehicle .
 
+vsso:PowertrainCombustionEngine a vsso:VehicleComponent ;
+    rdfs:label "CombustionEngine"@en ;
+    rdfs:comment "Engine-specific data, stopping at the bell housing."@en ;
+    skos:altLabel "Vehicle.Powertrain.CombustionEngine"@en ;
+    vsso:partOf vsso:Powertrain .
+
 vsso:VehicleIdentification a vsso:VehicleComponent ;
     rdfs:label "VehicleIdentification"@en ;
     rdfs:comment "Attributes that identify a vehicle"@en ;
@@ -4343,9 +4725,9 @@ vsso:OBD a vsso:VehicleComponent ;
     skos:altLabel "Vehicle.OBD"@en ;
     vsso:partOf vsso:Vehicle .
 
-vsso:hasStaticVehicleProperty a owl:DataProperty ;
+vsso:hasStaticVehicleProperty a owl:DatatypeProperty ;
     rdfs:label "hasStaticVehicleProperty"@en ;
     rdfs:domain vsso:Vehicle ;
-    rdfs:subPropertyOf owl:topDataProperty .
+    rdfs:subPropertyOf owl:topDatatypeProperty .
 
 
