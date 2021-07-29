@@ -1,0 +1,72 @@
+@prefix indv: <https://individualsnamespace.test/vsso-demo/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix vsso: <https://github.com/danielwilms/vsso-demo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+indv:Vehicle-0 a vsso:Vehicle ;
+    vsso:hasDynamicVehicleProperty indv:Vehicle-0-StateOfChargeCurrent ;
+    vsso:hasStaticVehicleProperty indv:Vehicle-0-BatteryGrossCapacity,
+        indv:Vehicle-0-VehicleIdentificationVIN .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor a sosa:Sensor ;
+    sosa:madeObservation indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-0,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-1,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-2,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-3,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-4,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-5,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-6,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-7,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-8,
+        indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-9 ;
+    sosa:observes indv:Vehicle-0-StateOfChargeCurrent .
+
+indv:Vehicle-0-BatteryGrossCapacity a vsso:BatteryGrossCapacity ;
+    vsso:holdsState "44" .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-0 a sosa:Observation ;
+    sosa:hasSimpleResult "63"^^xsd:int ;
+    sosa:resultTime "0"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-1 a sosa:Observation ;
+    sosa:hasSimpleResult "59"^^xsd:int ;
+    sosa:resultTime "1"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-2 a sosa:Observation ;
+    sosa:hasSimpleResult "56"^^xsd:int ;
+    sosa:resultTime "2"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-3 a sosa:Observation ;
+    sosa:hasSimpleResult "53"^^xsd:int ;
+    sosa:resultTime "3"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-4 a sosa:Observation ;
+    sosa:hasSimpleResult "50"^^xsd:int ;
+    sosa:resultTime "4"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-5 a sosa:Observation ;
+    sosa:hasSimpleResult "47"^^xsd:int ;
+    sosa:resultTime "5"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-6 a sosa:Observation ;
+    sosa:hasSimpleResult "44"^^xsd:int ;
+    sosa:resultTime "6"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-7 a sosa:Observation ;
+    sosa:hasSimpleResult "41"^^xsd:int ;
+    sosa:resultTime "7"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-8 a sosa:Observation ;
+    sosa:hasSimpleResult "38"^^xsd:int ;
+    sosa:resultTime "8"^^xsd:dateTime .
+
+indv:Vehicle-0-StateOfChargeCurrent-Sensor-Observation-9 a sosa:Observation ;
+    sosa:hasSimpleResult "36"^^xsd:int ;
+    sosa:resultTime "9"^^xsd:dateTime .
+
+indv:Vehicle-0-VehicleIdentificationVIN a vsso:VehicleIdentificationVIN ;
+    vsso:holdsState "0" .
+
+indv:Vehicle-0-StateOfChargeCurrent a vsso:StateOfChargeCurrent ;
+    vsso:holdsState "36"^^xsd:int .
+
